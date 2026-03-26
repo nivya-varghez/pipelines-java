@@ -18,6 +18,13 @@ strategy:
 
 pool:
   vmImage: $(imageName)
+  strategy:
+  matrix:
+    jdk10:
+      jdkVersion: "1.10"
+    jdk11:
+      jdkVersion: "1.11"
+  maxParallel: 2
 
 steps:
 - task: Maven@3
@@ -25,7 +32,7 @@ steps:
     mavenPomFile: 'pom.xml'
     mavenOptions: '-Xmx3072m'
     javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.11'
+    jdkVersionOption: $(jdkVersion)
     jdkArchitectureOption: 'x64'
     publishJUnitResults: false
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
