@@ -4,9 +4,9 @@ trigger:
 
 strategy:
   matrix:
-    jdk10_linux:
+    jdk11_linux:
       imageName: "ubuntu-latest"
-      jdkVersion: "1.10"
+      jdkVersion: "1.11"
     jdk11_windows:
       imageName: "windows-latest"
       jdkVersion: "1.11"
@@ -26,9 +26,9 @@ steps:
     publishJUnitResults: true
     testResultsFiles: "**/TEST-*.xml"
     goals: "package"
-    
+
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/target'
+    PathtoPublish: '$(Build.SourcesDirectory)/target'
     ArtifactName: 'drop'
     publishLocation: 'Container'
