@@ -26,3 +26,9 @@ steps:
     publishJUnitResults: true
     testResultsFiles: "**/TEST-*.xml"
     goals: "package"
+    
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/target'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
